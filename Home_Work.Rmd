@@ -25,7 +25,7 @@ swimming_pool_icon <- makeIcon('https://www.ioannas-house.com/wp-content/uploads
                                iconAnchorX = 21,
                                iconAnchorY = 21)
 
-df <- data.frame(popup = c("<ahref='https://zelenograd24.su/imgs/org/699/4699/basseyn-orbita_1639455406_5.webp'>Orbita</a>",
+df <- data.frame(popup = c("<a href='https://zelenograd24.su/imgs/org/699/4699/basseyn-orbita_1639455406_5.webp'>Orbita</a>",
                            "<a href='https://miet.ru/upload/medialibrary/257/_MG_0131%20(1).jpg'>MIET</a>",
                            "<a href='https://b1.mskagency.ru/c/795616.jpg'>Sputnik Arena</a>",
                            "<a href='https://avatars.mds.yandex.net/get-altay/5235220/2a000001807c0a53f0b0f78e5bb49683f99a/XL'>Fitness Territory 2</a>",
