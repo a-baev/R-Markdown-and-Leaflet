@@ -1,0 +1,43 @@
+---
+title: The nearest swimming pools
+author: "A.B."
+output: html_document
+---
+
+```{r echo = FALSE, comments="", include=FALSE}
+df <- data.frame(month_names = c('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'))
+rusdate <- format(Sys.Date(), "%d-%m-%y")
+current_date_split <- as.integer(unlist(strsplit(x = rusdate, split = '-')))
+current_month_str <- df$month_names[current_date_split[2]]
+current_date_str <- paste0(current_date_split[1], ' ', current_month_str, ' ', (2000+current_date_split[3]))
+```
+
+## `r current_date_str`
+
+```{r echo = FALSE, comments="", include=FALSE}
+library(leaflet)
+```
+
+```{r echo = FALSE, message=FALSE}
+swimming_pool_icon <- makeIcon('https://www.ioannas-house.com/wp-content/uploads/2015/03/swimming-pool-icon-png-3.png',
+                               iconWidth = 41,
+                               iconHeight = 41,
+                               iconAnchorX = 21,
+                               iconAnchorY = 21)
+
+df <- data.frame(popup = c("<ahref='https://zelenograd24.su/imgs/org/699/4699/basseyn-orbita_1639455406_5.webp'>Orbita</a>",
+                           "<a href='https://miet.ru/upload/medialibrary/257/_MG_0131%20(1).jpg'>MIET</a>",
+                           "<a href='https://b1.mskagency.ru/c/795616.jpg'>Sputnik Arena</a>",
+                           "<a href='https://avatars.mds.yandex.net/get-altay/5235220/2a000001807c0a53f0b0f78e5bb49683f99a/XL'>Fitness Territory 2</a>",
+                           "<a href='https://p1.zoon.ru/preview/xReJioPsJBm4yZmSOtx3XA/1120x700x85/1/7/1/original_649f2723c4fa92e16306b97f_6555eca1dedad4.08226793.jpg'>Fitness Territory 1</a>"),
+                 lat = c(55.987067, 55.984362, 55.986892, 55.990273, 55.968345),
+                 lng = c(37.225990, 37.209135, 37.191001, 37.151859, 37.156869)
+                 )
+df %>% leaflet() %>% 
+        addTiles() %>% 
+        addMarkers(clusterOptions = markerClusterOptions(),
+                   popup = df$popup,
+                   icon = swimming_pool_icon) %>%
+        setView(lat = 55.986892, lng = 37.191001,  zoom = 11)
+
+```
